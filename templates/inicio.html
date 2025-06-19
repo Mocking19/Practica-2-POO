@@ -1,0 +1,18 @@
+<!-- templates/inicio.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Registro de Horarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <h1>Bienvenido al sistema de control de horarios</h1>
+    <ul>
+        <li><a href="{{ url_for('control.registrar_entrada') }}">Registrar Entrada</a></li>
+        <li><a href="{{ url_for('control.registrar_salida') }}">Registrar Salida</a></li>
+        <li><a href="{{ url_for('control.consultar_registros') }}">Consultar Registros</a></li>
+    </ul>
+</body>
+</html>

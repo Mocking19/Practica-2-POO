@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<a href="/">Volver al inicio</a>
+
+<h1>Consultar Registros</h1>
+<form method="post">
+    <input name="legajo" placeholder="Legajo" required>
+    <input name="dni" placeholder="Últimos 4 del DNI" required>
+    <input type="date" name="desde" required>
+    <input type="date" name="hasta" required>
+    <button type="submit">Consultar</button>
+</form>
+
+{% if registros %}
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Dependencia</th>
+        </tr>
+        {% for r in registros %}
+        <tr>
+            <td>{{ r.fecha }}</td>
+            <td>{{ r.hora_entrada }}</td>
+            <td>{{ r.hora_salida or "—" }}</td>
+            <td>{{ dependencias[r.dependencia] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+</body>
+</html>
